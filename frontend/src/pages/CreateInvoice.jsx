@@ -10,6 +10,8 @@ import {
 
 /* ---------- API BASE ---------- */
 const API_BASE = import.meta.env.VITE_API_BASE
+console.log("API BASE:", import.meta.env.VITE_API_BASE);
+
 
 /* ---------- storage helpers (unchanged) ---------- */
 /* ----------------- frontend-only: normalize image URLs ----------------- */

@@ -12,16 +12,30 @@ import businessProfileRouter from "./routes/businessProfileRouter.js";
 import invoiceRouter from "./routes/invoiceRouter.js";
 import aiInvoiceRouter from "./routes/aiInvoiceRouter.js";
 
-const app = express();
-const port = process.env.PORT || 4000;
+// import cors from "cors";
 
-// ⭐ IMPORTANT: ENABLE CREDENTIALS FOR CLERK COOKIE SESSION
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ai-invoice-generator-kz53.vercel.app"
+];
+
 app.use(
   cors({
-    origin: "https://ai-invoice-generator-kz53.vercel.app/", // change to frontend URL in production
+    origin: allowedOrigins,
     credentials: true,
   })
 );
+
+const app = express();
+const port = process.env.PORT || 4000;
+
+// // ⭐ IMPORTANT: ENABLE CREDENTIALS FOR CLERK COOKIE SESSION
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173", // change to frontend URL in production
+//     credentials: true,
+//   })
+// );
 
 // ⭐ Use Clerk middleware globally (does NOT protect routes)
 app.use(clerkMiddleware());
