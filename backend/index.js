@@ -1,23 +1,27 @@
-import cors from 'cors';
-import 'dotenv/config';
-import express from 'express';
-import { connectDB } from './config/db.js';
-import path from 'path';
+import cors from "cors";
+// import 'dotenv/config';
+import express from "express";
+import { connectDB } from "./config/db.js";
+import path from "path";
+import dotenv from "dotenv";
+dotenv.config();
 
 // ⭐ ADD CLERK MIDDLEWARE
 import { clerkMiddleware } from "@clerk/express";
-import businessProfileRouter from './routes/businessProfileRouter.js';
-import invoiceRouter from './routes/invoiceRouter.js';
-import aiInvoiceRouter from './routes/aiInvoiceRouter.js';
+import businessProfileRouter from "./routes/businessProfileRouter.js";
+import invoiceRouter from "./routes/invoiceRouter.js";
+import aiInvoiceRouter from "./routes/aiInvoiceRouter.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 // ⭐ IMPORTANT: ENABLE CREDENTIALS FOR CLERK COOKIE SESSION
-app.use(cors({
-    origin: "http://localhost:5173",     // change to frontend URL in production
-    credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // change to frontend URL in production
+    credentials: true,
+  })
+);
 
 // ⭐ Use Clerk middleware globally (does NOT protect routes)
 app.use(clerkMiddleware());
@@ -36,10 +40,10 @@ app.use("/api/invoice", invoiceRouter);
 app.use("/api/ai", aiInvoiceRouter);
 
 // Test route
-app.get('/', (req, res) => {
-    res.send('API Working with Clerk Auth');
+app.get("/", (req, res) => {
+  res.send("API Working with Clerk Auth");
 });
 
 app.listen(port, () => {
-    console.log(`Server Started on http://localhost:${port}`);
+  console.log(`Server Started on http://localhost:${port}`);
 });
