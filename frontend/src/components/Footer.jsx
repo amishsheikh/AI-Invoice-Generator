@@ -6,8 +6,7 @@ export default function Footer() {
     <footer className={footerStyles.footer}>
       <div className={footerStyles.container}>
         <div className={footerStyles.copyright}>
-          © {new Date().getFullYear()} InvoiceAI · Built by Hexagon Digital
-          Services
+          © {new Date().getFullYear()} InvoiceAI · Made with by 𖹭 Amish Sheikh
         </div>
         <div className={footerStyles.links}>
           <a href="/terms" className={footerStyles.link}>
